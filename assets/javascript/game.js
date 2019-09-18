@@ -10,26 +10,29 @@ $("document").ready(function () {
     console.log(targetNumber);
 
     var crystalValue;
-    var crystalStore = [];
+    // var crystalStore = [];
     var numberCrystals = $(".crystal-image").length;
     console.log(numberCrystals);
 
     function startGame() {
-        for (i = 0; i < numberCrystals; i++) {
+        $('.crystal-image').each(function (i) {
+            // obj is your "this" for the particular crystal image
             crystalValue = Math.floor((Math.random() * 12) + 1);
-            crystalStore.push(crystalValue);
-            $(".crystal-image").attr("dataValue", crystalStore[i]);
-            console.log(crystalStore);
-        }
-    }
+            console.log(crystalValue);
+            $(this).attr("dataValue", crystalValue);
+            console.log("Set crystal " + i + " to " + crystalValue);
+        });
 
-    $(".crystal-image").on("click", function () {
-        crystalValue = ($(this).attr("dataValue"));
-        crystalValue = parseInt(crystalValue);
-        counter += crystalValue;
-        console.log(counter);
-        $("#score-number").text(counter);
-    });
+        $(".crystal-image").on("click", function () {
+            crystalValue = $(this).attr("dataValue");
+            crystalValue = parseInt(crystalValue);
+            counter += crystalValue;
+            console.log(counter);
+            $("#score-number").text(counter);
+        });
 
+    };
+
+    
 startGame();
 });
