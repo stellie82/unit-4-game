@@ -1,22 +1,25 @@
 $("document").ready(function () {
-    console.log("ready!");
+    console.log("Ready!");
 
     // Create a random number generator to pick between a value between 19 and 120.
     var targetNumber = Math.floor((Math.random() * 120) + 19);
-    var counter = 0;
-    $("#score-number").text(counter);
+    var userNumber = 0;
 
+    // Display the user's score and random target number.
     $("#target-number").text(targetNumber);
     console.log(targetNumber);
 
+    $("#score-number").text(userNumber);
+    console.log(userNumber);
+
+    // Set variables for each crystal's value as well as the number of crystals based on images.
     var crystalValue;
-    // var crystalStore = [];
     var numberCrystals = $(".crystal-image").length;
     console.log(numberCrystals);
 
+    // Create a function to start the game.
     function startGame() {
         $('.crystal-image').each(function (i) {
-            // obj is your "this" for the particular crystal image
             crystalValue = Math.floor((Math.random() * 12) + 1);
             console.log(crystalValue);
             $(this).attr("dataValue", crystalValue);
@@ -26,13 +29,32 @@ $("document").ready(function () {
         $(".crystal-image").on("click", function () {
             crystalValue = $(this).attr("dataValue");
             crystalValue = parseInt(crystalValue);
-            counter += crystalValue;
-            console.log(counter);
-            $("#score-number").text(counter);
+            userNumber += crystalValue;
+            console.log(userNumber);
+            $("#score-number").text(userNumber);
         });
+
+        if (targetNumber === userNumber) {
+            youWin();
+        }
+
+        // else if (targetNumber > userNumber) {
+        //     youLose();
+        // }
 
     };
 
-    
-startGame();
+    // Create a function for when the user wins the game.
+    function youWin() {
+        alert("You win!");
+    }
+
+    // Create a function for when the user loses the game.
+    function youLose() {
+        alert("You lose!");
+    }
+
+
+    startGame();
+
 });
