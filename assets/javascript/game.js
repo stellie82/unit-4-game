@@ -4,6 +4,8 @@ $("document").ready(function () {
     // Create a random number generator to pick between a value between 19 and 120.
     var targetNumber = Math.floor((Math.random() * 120) + 19);
     var userNumber = 0;
+    var wins = 0;
+    var losses = 0;
 
     // Display the user's score and random target number.
     $("#target-number").text(targetNumber);
@@ -20,6 +22,7 @@ $("document").ready(function () {
     // Create a function to start the game.
     function startGame() {
         $('.crystal-image').each(function (i) {
+            // Generate a random number for each crystal with a value between 1 and 12.
             crystalValue = Math.floor((Math.random() * 12) + 1);
             console.log(crystalValue);
             $(this).attr("dataValue", crystalValue);
@@ -35,12 +38,17 @@ $("document").ready(function () {
         });
 
         if (targetNumber === userNumber) {
+            wins++;
             youWin();
+            $(".wins").text(wins);
         }
 
-        // else if (targetNumber > userNumber) {
-        //     youLose();
-        // }
+        else if (userNumber > targetNumber) {
+            losses++;
+            console.log(losses);
+            $(".losses").text(losses);
+            youLose();
+        }
 
     };
 
