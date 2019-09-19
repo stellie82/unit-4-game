@@ -1,4 +1,4 @@
-# unit-4-game
+# unit-4-game: Crystals Collector
 
 ## Objective
 The obective of this game is to match your score to the randomly generated target number.  There are 4 crystals on the page.  Each crystal holds its own random value.  You will not know its value until you click on the crystal.  If you are able to add up your points with the crystal vales you have to the target number, then you win!  If not, have another go.
