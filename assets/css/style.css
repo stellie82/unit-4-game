@@ -3,3 +3,7 @@
     height: 125px;
 }
 
+#wins, #losses {
+    text-align: center;
+}
+

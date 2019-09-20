@@ -9,6 +9,7 @@ var losses = 0;
 
 // Create a function to start the game.
 function startGame() {
+    $("#status").text("");
     // Create a random number generator to pick between a value between 19 and 120.
     targetNumber = Math.floor((Math.random() * 120) + 19);
     userNumber = 0;
@@ -32,11 +33,10 @@ function startGame() {
 
     $("#score-number").text(userNumber);
     console.log("User score: " + userNumber);
-};
+}
 
 // Create parameters for winning or losing the game based on the user's click.
-$(".crystal-image").on("click", function () {
-    console.log("test onclick");
+function crystalClick() {
     if (userNumber < targetNumber) {
         crystalValue = $(this).attr("dataValue");
         crystalValue = parseInt(crystalValue);
@@ -50,17 +50,20 @@ $(".crystal-image").on("click", function () {
 
     else if (targetNumber === userNumber) {
         wins++;
-        $("#wins").text(wins);
+        $("#wins").text("Wins: " + wins);
+        $("#status").text("You win!");
         endGame = true;
-        alert("You win!");
     }
 
     else if (userNumber > targetNumber) {
         losses++;
-        $("#losses").text(losses);
+        $("#losses").text("Losses: " + losses);
+        $("#status").text("Sorry, better luck next time...");
         endGame = true;
-        alert("Sorry, better luck next time...");
     }
-});
+}
 
-$("document").ready(startGame);
+$("document").ready(function() {
+    $(".crystal-image").on("click", crystalClick);
+    startGame();
+});
